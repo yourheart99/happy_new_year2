@@ -12,6 +12,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            font-family: "Russo One", arial, sans-serif;
         }
         
         .city {
@@ -24,6 +25,14 @@
         .city img {
             width: 100%;
         }
+        .type_words {
+            position: fixed;
+            top: 2%;
+            left: 1%;
+            color: #fff;
+            padding: 60px 80px 20px 0px;
+            text-transform: lowercase;
+        }
     </style>
 </head>
 
@@ -31,10 +40,12 @@
     <canvas id='cas' style="background-color:rgba(0,5,24,1)">浏览器不支持canvas</canvas>
     <div class="city"><img src="https://img-blog.csdnimg.cn/3a6c0a32c0e94294818a4c2cf0acd72a.png#pic_center" alt="" /></div>
     <img src="https://img-blog.csdnimg.cn/31dc82b6a2744e42bdfc6819efad2303.png#pic_center" alt="" id="moon" style="visibility: hidden;" />
+    <div class="type_words" id="contents"></div>
     <div style="display:none">
         <div class="shape">2023新年快乐</div>
         <div class="shape">兔年大吉</div>
-        <div class="shape"> ^_^ </div>
+        <div class="shape">身体健康</div>
+        <div class="shape">万事如意</div>
     </div>
     <audio src="https://xima.tv/1_49WUbo?_sonic=0" preload="auto"></audio>
     <audio src="https://xima.tv/1_49WUbo?_sonic=0" preload="auto"></audio>
@@ -399,6 +410,31 @@
                 this.paint();
             }
         }
+    </script>
+    <script>
+        function start() {
+            const text = [
+                'ʸᵒᵘ ᵃʳᵉ ᵗʰᵉ ᵒⁿˡʸ ᵇᵉˢᵗ ᶠᵒʳ ᵐᵉ.',
+                "于我而言，你是最好且是唯一❤️",
+                "新年快乐🎆"
+            ]
+            let str = text.join('<br><br>')
+            let str_ = ''
+            let i = 0
+            let content = document.getElementById('contents')
+            let timer = setInterval(() => {
+                if (str_.length < str.length) {
+                    str_ += str[i++]
+                    content.innerHTML = '<p>' + str_ + '<span class="xx" style="opacity: 1;    color: red;">❤</span></p>'                        //打印时加光标
+                } else {
+                    clearInterval(timer)
+                    content.innerHTML = '<p>' + str_ + '</p>'
+                }
+            }, 100)
+        }
+        setTimeout(() => {
+            start();
+        }, 1000);
     </script>
 </body>
 
